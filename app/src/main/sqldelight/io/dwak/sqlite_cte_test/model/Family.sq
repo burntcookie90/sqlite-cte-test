@@ -1,0 +1,14 @@
+import java.lang.Long;
+import java.util.Date;
+
+CREATE TABLE family(
+  name TEXT PRIMARY KEY,
+  mom TEXT REFERENCES family,
+  dad TEXT REFERENCES family,
+  born INTEGER as Long,
+  died INTEGER as Long
+);
+
+select_all:
+SELECT *
+FROM family;
