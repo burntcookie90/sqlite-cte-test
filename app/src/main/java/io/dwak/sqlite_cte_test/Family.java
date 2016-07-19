@@ -13,7 +13,10 @@ public abstract class Family implements FamilyModel {
         "(SELECT name, mom FROM family UNION SELECT name, dad FROM family),\n" +
         "ancestor_of_jaden(name) AS\n" +
         "(SELECT parent FROM parent_of WHERE name='Jaden' UNION ALL SELECT parent FROM parent_of JOIN " +
-        "ancestor_of_jaden USING(name)) SELECT family.name FROM ancestor_of_jaden, family WHERE ancestor_of_jaden.name=family.name\n";
+        "ancestor_of_jaden USING(name))\n" +
+        "SELECT family.name, family.dad, family.mom, family.born, family.died FROM ancestor_of_jaden, family WHERE " +
+        "ancestor_of_jaden.name=family" +
+        ".name\n";
 
     @Nullable
     @Override
