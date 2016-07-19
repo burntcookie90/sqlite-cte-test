@@ -8,6 +8,12 @@ import io.dwak.sqlite_cte_test.model.FamilyModel;
 public abstract class Family implements FamilyModel {
     public static final Factory<Family> FACTORY = new Factory<>(Family::create);
     public static final Mapper<Family> MAPPER = new Mapper<>(FACTORY);
+    public static final String SELECT_ANCESTORS = "WITH RECURSIVE\n" +
+        "parent_of(name, parent) AS\n" +
+        "(SELECT name, mom FROM family UNION SELECT name, dad FROM family),\n" +
+        "ancestor_of_jaden(name) AS\n" +
+        "(SELECT parent FROM parent_of WHERE name='Jaden' UNION ALL SELECT parent FROM parent_of JOIN " +
+        "ancestor_of_jaden USING(name)) SELECT family.name FROM ancestor_of_jaden, family WHERE ancestor_of_jaden.name=family.name\n";
 
     @Nullable
     @Override

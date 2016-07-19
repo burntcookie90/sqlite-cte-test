@@ -9,7 +9,7 @@ android {
     buildToolsVersion "24.0.0"
     defaultConfig {
         applicationId "io.dwak.sqlite_cte_test"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -31,6 +31,7 @@ dependencies {
     compile "com.google.auto.value:auto-value:1.2"
     apt 'com.google.auto.value:auto-value:1.2'
     compile 'com.facebook.stetho:stetho:1.3.1'
+    compile 'io.requery:sqlite-android:3.13.0-3'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
