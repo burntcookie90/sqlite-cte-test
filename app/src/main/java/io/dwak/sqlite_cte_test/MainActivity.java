@@ -17,5 +17,7 @@ public class MainActivity extends AppCompatActivity {
         while(cursor.moveToNext()){
             Log.d("main", Family.MAPPER.map(cursor).toString());
         }
+        cursor.close();
+        db.close();
     }
 }
